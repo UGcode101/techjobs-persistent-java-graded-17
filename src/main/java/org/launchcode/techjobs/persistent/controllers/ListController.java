@@ -40,7 +40,7 @@ public class ListController {
 
     @RequestMapping("")
     public String list(Model model) {
-        model.addAttribute("title", "View Jobs By Category");
+        model.addAttribute("title");
         model.addAttribute("employers", employerRepository.findAll());
         model.addAttribute("skills", skillRepository.findAll());
         return "list";
