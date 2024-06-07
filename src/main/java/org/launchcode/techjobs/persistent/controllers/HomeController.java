@@ -73,7 +73,7 @@ public class HomeController {
 
         jobRepository.save(newJob);
 
-        return "redirect:/";
+        return "redirect:";
     }
 
     @GetMapping("view/{jobId}")
@@ -84,7 +84,7 @@ public class HomeController {
             model.addAttribute("job", job);
             return "view";
         } else {
-            return "redirect:/";
+            return "redirect:./";
         }
     }
 }
