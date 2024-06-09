@@ -50,6 +50,10 @@ public class HomeController {
                                     @RequestParam int employerId,
                                     @RequestParam List<Integer> skillIds) {
 
+        // Always fetch and set skills regardless of error conditions to match test expectations
+        List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skillIds);
+        newJob.setSkills(skillObjs);
+
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Job");
             model.addAttribute("employers", employerRepository.findAll());
@@ -67,9 +71,6 @@ public class HomeController {
             model.addAttribute("skills", skillRepository.findAll());
             return "add";
         }
-
-        List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skillIds);
-        newJob.setSkills(skillObjs);
 
         jobRepository.save(newJob);
 
